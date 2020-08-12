@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erguotou.mapper.FriendLinkMapper">
+
+
+    <select id="getAllLink" resultType="com.erguotou.pojo.FriendLink">
+        select * from friend_link
+    </select>
+
+    <insert id="addLink">
+        insert into friend_link (friend_link, friend_name) VALUES
+                                (#{friendLink}, #{friendName})
+    </insert>
+
+    <delete id="deleteLink">
+        delete from friend_link where id=#{id}
+    </delete>
+
+</mapper>

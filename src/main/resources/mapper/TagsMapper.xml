@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erguotou.mapper.TagsMapper">
+
+<!--    增加一个新标签-->
+    <insert id="addTags" parameterType="string">
+        insert into tags (tags, tags_number)
+        values (#{Tag}, 1);
+    </insert>
+<!--    标签数量减一 -->
+    <update id="TagsSubtractOne" parameterType="string">
+        update tags set tags_number=tags_number-1 where tags=#{Tag}
+    </update>
+
+<!--    标签数量加一 -->
+    <update id="TagsAddOne">
+        update tags set tags_number=tags_number+1 where tags=#{Tag}
+    </update>
+
+    <!--    删除一个标签-->
+    <delete id="deleteTags">
+        delete from tags where tags=#{Tag}
+    </delete>
+
+    <!--    查询标签数量-->
+    <select id="getTagsNubmer" resultType="int" parameterType="string">
+        select tags_number from tags where tags=#{Tag};
+    </select>
+</mapper>

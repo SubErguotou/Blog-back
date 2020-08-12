@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erguotou.mapper.BlogMapper">
+
+    <resultMap id="BlogMap" type="com.erguotou.pojo.Blog">
+        <id property="id" column="id"/>
+        <result property="titles" column="titles"/>
+        <result property="blogText" column="blog_text"/>
+<!--        用户-->
+        <association property="userNameId" javaType="com.erguotou.pojo.User">
+            <id property="id" column="id"/>
+            <result property="userName" column="userName"/>
+            <result property="userEmail" column="userEmail"/>
+        </association>
+
+<!--        分类-->
+        <association property="classfileId" javaType="com.erguotou.pojo.Classfiy">
+            <id property="id" column="classfiy_id"/>
+            <result property="classfile" column="classfile"/>
+        </association>
+
+<!--        标签-->
+        <association property="tagsId" column="com.erguotou.pojo.Tags">
+            <id property="id" column="tags_id"/>
+            <result property="tags" column="Tags"/>
+        </association>
+
+
+    </resultMap>
+    <select id="getBlog" resultMap="BlogMap">
+        select b.titles as titles,
+               u.user_name as userName,
+               u.user_email as userEmail,
+               c.classfile as classfile,
+               t.tags as Tags
+        from blog b, user u, classfiy c, tags t
+        where b.user_name_id=u.id
+        and b.classfiy_id=c.id
+        and b.tags_id=t.id
+        and b.id = #{id}
+
+    </select>
+</mapper>

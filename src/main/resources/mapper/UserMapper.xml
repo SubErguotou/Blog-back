@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erguotou.mapper.UserMapper">
+    <select id="getAllUser" resultType="com.erguotou.pojo.User">
+        SELECT * FROM user
+    </select>
+
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        update `user` set userName = #{user.userName},
+        userPasswd = #{userPasswd},
+        userEmail = #{userEmail},
+        createTime = #{createTime},
+        updateTiem = #{updateTiem},
+        blogNumber = #{blogNumber}
+        where id = #{id}
+    </update>
+<!-- useGeneratedKeys：开启返回插入数据的主键，keyProperty：把返回数据的主键赋值给id属性-->
+    <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into user(user_name, user_passwd, user_email, creat_time, update_time, blog_number)
+        value
+        (#{userName}, #{userPasswd}, #{userEmail}, #{creatTime},
+        #{updateTime}, #{blogNumber})
+    </insert>
+
+</mapper>

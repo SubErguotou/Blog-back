@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/egtblog?serverTimezone=GMT
+    username: root
+    password: 1339218991fks
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+#  配置mapper文件位置
+  mapper-locations: classpath:mapper/*.xml
+#  配置别名
+  type-aliases-package: com.erguotou.pojo
+  configuration:
+#    开启驼峰命名配置
+    map-underscore-to-camel-case: true
+#    开启懒加载
+    lazy-loading-enabled: true
+#    是否查询所有数据
+    aggressive-lazy-loading: false
+    
